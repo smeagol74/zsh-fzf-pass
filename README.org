@@ -1,0 +1,13 @@
+* zsh-fzf-pass
+ZSH plugin for better handling of passwords using fuzzy finder
+
+** Installation
+
+** Usage
+
+
+** Special thanks
+to the great opensource software:
+- [[https://www.passwordstore.org/][pass]] - the standard unix password manager
+- [[https://github.com/junegunn/fzf][fzf]] - command line fuzzy finder
+- [[https://www.zsh.org/][zsh]] - great interactive shell
