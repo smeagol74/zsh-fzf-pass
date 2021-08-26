@@ -6,12 +6,12 @@ function fuzzy-pass() {
   [ -z "$PASSFILE" ] && return 0
 
   PASSDATA="$(pass ${PASSFILE})"
-  PASS="$(echo "${PASSDATA}" | head --lines 1)"
-  LOGIN="$(echo "${PASSDATA}" | egrep -i "login:|username:|user:" | head --lines 1 | cut -d' ' -f2-)"
+  PASS="$(echo "${PASSDATA}" | head -n 1)"
+  LOGIN="$(echo "${PASSDATA}" | egrep -i "login:|username:|user:" | head -n 1 | cut -d' ' -f2-)"
   if [ -z "${LOGIN}" ] && [ -n "${PASS}" ]; then
     LOGIN=${PASSFILE##*/}
   fi
-  EMAIL="$(echo "${PASSDATA}" | egrep -i "email:" | head --lines 1 | cut -d' ' -f2-)"
+  EMAIL="$(echo "${PASSDATA}" | egrep -i "email:" | head -n 1 | cut -d' ' -f2-)"
   URL="$(echo "${PASSDATA}" | egrep -i "url:" | cut -d' ' -f2-)"
   if [ -z "${URL}" ]; then
     URL="$(basename $(dirname "${PASSFILE}"))"
