@@ -20,7 +20,7 @@ function fuzzy-pass() {
 
   cd ${DIR}
 
-  ACTIONS="File"
+  ACTIONS="Edit\nFile"
 
   if [ -n "${URL}" ]; then
     ACTIONS="Url\n${ACTIONS}"
@@ -59,6 +59,9 @@ function fuzzy-pass() {
       Email)
         echo "${EMAIL}" | clipcopy
         echo "Copied Email '${EMAIL}' to clipboard"
+        ;;
+      Edit)
+        pass edit "${PASSFILE}"
         ;;
       *)
         CONTINUE=false
