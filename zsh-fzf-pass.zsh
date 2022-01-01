@@ -1,6 +1,6 @@
 function fuzzy-pass() {
   DIR=$(pwd)
-  cd "${HOME}/.password-store"
+  cd "${PASSWORD_STORE_DIR:-${HOME}/.password-store}"
   PASSFILE=$(tree -Ffi | grep '.gpg' | sed 's/.gpg$//g' | sed 's/^..//' | fzf)
 
   [ -z "$PASSFILE" ] && return 0
