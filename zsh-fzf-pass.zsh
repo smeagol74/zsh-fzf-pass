@@ -1,7 +1,6 @@
 function fuzzy-pass() {
-  DIR=$(pwd)
-  cd "${PASSWORD_STORE_DIR:-${HOME}/.password-store}"
-  PASSFILE=$(find -L . | grep '.gpg' | sed 's/.gpg$//g' | sed 's/^..//' | fzf)
+  PASS_STR_VALID_DIR="${PASSWORD_STORE_DIR:-${HOME}/.password-store}"
+  PASSFILE=$(find -L $PASS_STR_VALID_DIR | sed "s|$PASS_STR_VALID_DIR||" | grep '.gpg' | sed 's/.gpg$//g' | fzf)
 
   [ -z "$PASSFILE" ] && return 0
 
@@ -17,8 +16,6 @@ function fuzzy-pass() {
     URL="$(basename $(dirname "${PASSFILE}"))"
     URL="$(echo "${URL}" | grep "\.")"
   fi
-
-  cd ${DIR}
 
   ACTIONS="Edit\nFile"
 
